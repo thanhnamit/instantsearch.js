@@ -56,13 +56,13 @@ This cannot yet be moved to `yarn release` so please us `npm run release`.
 ## Update docs
 
 ```sh
-yarn docs:update
+yarn docs:deploy:production
 ```
 
 ## Upgrade deps
 
 ```sh
-yarn upgrade-deps
+yarn lib:upgrade-deps
 ```
 
 ## See next release changelog
