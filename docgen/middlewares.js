@@ -29,6 +29,10 @@ const common = [
     source: './assets/',
     destination: './assets/',
   }),
+  assets({
+    source: './rootFiles',
+    destination: './',
+  }),
   sources([
     reactPackage('src/widgets/*.js'),
     reactPackage('src/connectors/*.js'),

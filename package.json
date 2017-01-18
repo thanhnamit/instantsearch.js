@@ -8,7 +8,7 @@
     "start": "NODE_ENV=development babel-node docgen/start.js & yarn docs:storybook-start & wait",
     "docs:build": "babel-node docgen/build.js && yarn docs:storybook-build-production",
     "docs:deploy-production": "NODE_ENV=production yarn docs:build && babel-node scripts/gh-pages.js",
-    "docs:deploy-preview": "NODE_ENV=production yarn docs:build && cd docs-production/react && netlify deploy",
+    "docs:deploy-preview": "NODE_ENV=production yarn docs:build && rm -f preview.zip && zip -r -9 preview.zip docs-production/ && netlify deploy",
     "release": "./scripts/release.sh",
     "lint": "if [ \"$CI\" = \"true\" ]; then eslint .; else eslint . --cache; fi",
     "lint:fix": "eslint . --fix",
