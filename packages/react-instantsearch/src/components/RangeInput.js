@@ -15,11 +15,24 @@ class RangeInput extends Component {
       min: PropTypes.number,
       max: PropTypes.number,
     }).isRequired,
+    isEmpty: PropTypes.func,
+  };
+
+  static contextTypes = {
+    isEmpty: PropTypes.func,
   };
 
   constructor(props) {
     super(props);
     this.state = {from: props.currentRefinement.min, to: props.currentRefinement.max};
+  }
+
+  componentWillUnmount() {
+    if (this.context.isEmpty) this.context.isEmpty(true);
+  }
+
+  componentDidMount() {
+    if (this.context.isEmpty) this.context.isEmpty(false);
   }
 
   componentWillReceiveProps(nextProps) {

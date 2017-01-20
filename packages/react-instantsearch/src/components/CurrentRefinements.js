@@ -13,7 +13,20 @@ class CurrentRefinements extends Component {
     })).isRequired,
     refine: PropTypes.func.isRequired,
     transformItems: PropTypes.func,
+    isEmpty: PropTypes.func,
   };
+
+  static contextTypes = {
+    isEmpty: PropTypes.func,
+  };
+
+  componentWillUnmount() {
+    if (this.context.isEmpty) this.context.isEmpty(true);
+  }
+
+  componentDidMount() {
+    if (this.context.isEmpty) this.context.isEmpty(false);
+  }
 
   render() {
     const {translate, items, refine} = this.props;

@@ -244,4 +244,32 @@ describe('Menu', () => {
       wrapper.unmount();
     });
   });
+
+  describe('Panel compatibility', () => {
+    it('Should notify when empty', () => {
+      const isEmpty = jest.fn();
+      const wrapper = mount(
+        <Menu
+        refine={() => null}
+        searchForFacetValues={() => null}
+        createURL={() => '#'}
+        items={[
+          {label: 'white', value: 'white', count: 10, isRefined: true, _highlightResult: {label: 'white'}},
+        ]}
+        isFromSearch={true}
+      />,
+        {context: {
+          isEmpty,
+        }},
+      );
+
+      expect(isEmpty.mock.calls.length).toBe(1);
+      expect(isEmpty.mock.calls[0][0]).toEqual(false);
+
+      wrapper.unmount();
+
+      expect(isEmpty.mock.calls.length).toBe(2);
+      expect(isEmpty.mock.calls[1][0]).toEqual(true);
+    });
+  });
 });

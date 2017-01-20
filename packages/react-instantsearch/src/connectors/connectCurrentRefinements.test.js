@@ -14,6 +14,9 @@ describe('connectCurrentRefinements', () => {
     ]);
     expect(props.items).toEqual(['one', 'two', 'three']);
 
+    props = getProvidedProps({}, null, null, []);
+    expect(props).toEqual(null);
+
     const transformItems = jest.fn(() => ['items']);
     props = getProvidedProps({transformItems}, null, null, [
       {items: ['one']},

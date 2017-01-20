@@ -19,7 +19,20 @@ class StarRating extends Component {
       value: PropTypes.string,
       count: PropTypes.number,
     })).isRequired,
+    isEmpty: PropTypes.func,
   };
+
+  static contextTypes = {
+    isEmpty: PropTypes.func,
+  };
+
+  componentWillUnmount() {
+    if (this.context.isEmpty) this.context.isEmpty(true);
+  }
+
+  componentDidMount() {
+    if (this.context.isEmpty) this.context.isEmpty(false);
+  }
 
   onClick(min, max, e) {
     e.preventDefault();

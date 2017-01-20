@@ -25,15 +25,7 @@ describe('connectHierarchicalMenu', () => {
 
     results.getFacetValues.mockImplementationOnce(() => ({}));
     props = getProvidedProps({attributes: ['ok']}, {hierarchicalMenu: {ok: 'wat'}}, {results});
-    expect(props).toEqual({items: [], currentRefinement: 'wat'});
-
-    results.getFacetValues.mockImplementationOnce(() => ({}));
-    props = getProvidedProps({attributes: ['ok'], defaultRefinement: 'wat'}, {}, {results});
-    expect(props).toEqual({items: [], currentRefinement: 'wat'});
-
-    results.getFacetValues.mockImplementationOnce(() => ({}));
-    props = getProvidedProps({attributes: ['ok']}, {}, {results});
-    expect(props).toEqual({items: [], currentRefinement: null});
+    expect(props).toEqual(null);
 
     results.getFacetValues.mockClear();
     results.getFacetValues.mockImplementation(() => ({

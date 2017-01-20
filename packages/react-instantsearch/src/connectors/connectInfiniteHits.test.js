@@ -3,7 +3,7 @@
 import connect from './connectInfiniteHits.js';
 jest.mock('../core/createConnector');
 
-describe.only('connectInfiniteHits', () => {
+describe('connectInfiniteHits', () => {
   it('provides the current hits to the component', () => {
     const providedThis = {};
     const hits = [{}];

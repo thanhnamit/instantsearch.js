@@ -136,6 +136,11 @@ export default createConnector({
     const limit = showMore ? limitMax : limitMin;
     const value = results.getFacetValues(id, {sortBy});
     const items = value.data ? transformValue(value.data, limit, props, searchState) : [];
+
+    if (items.length === 0) {
+      return null;
+    }
+
     return {
       items: props.transformItems ? props.transformItems(items) : items,
       currentRefinement: getCurrentRefinement(props, searchState),

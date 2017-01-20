@@ -28,7 +28,20 @@ class RefinementList extends Component {
     limitMin: PropTypes.number,
     limitMax: PropTypes.number,
     transformItems: PropTypes.func,
+    isEmpty: PropTypes.func,
   };
+
+  static contextTypes = {
+    isEmpty: PropTypes.func,
+  };
+
+  componentWillUnmount() {
+    if (this.context.isEmpty) this.context.isEmpty(true);
+  }
+
+  componentDidMount() {
+    if (this.context.isEmpty) this.context.isEmpty(false);
+  }
 
   selectItem = item => {
     this.props.refine(item.value);

@@ -22,6 +22,7 @@ class List extends Component {
     show: PropTypes.func,
     searchForFacetValues: PropTypes.func,
     isFromSearch: PropTypes.bool,
+    isEmpty: PropTypes.func,
   };
 
   defaultProps= {
@@ -115,9 +116,10 @@ class List extends Component {
 
   render() {
     const {cx, items, searchForFacetValues} = this.props;
+    const searchBox = searchForFacetValues ? this.renderSearchBox() : null;
     if (items.length === 0) {
       return <div {...cx('root')}>
-        {this.renderSearchBox()}
+        {searchBox}
       </div>;
     }
 
@@ -125,7 +127,6 @@ class List extends Component {
     // number of retrieved items might vary with the `maxValuesPerFacet` config
     // option.
     const limit = this.getLimit();
-    const searchBox = searchForFacetValues ? this.renderSearchBox() : null;
     return (
       <div {...cx('root')}>
         {searchBox}

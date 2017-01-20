@@ -21,6 +21,11 @@ export default createConnector({
     const items = metadata.reduce((res, meta) =>
         typeof meta.items !== 'undefined' ? res.concat(meta.items) : res
       , []);
+
+    if (items.length === 0) {
+      return null;
+    }
+
     return {
       items: props.transformItems ? props.transformItems(items) : items,
     };

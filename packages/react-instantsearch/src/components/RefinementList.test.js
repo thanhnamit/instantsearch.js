@@ -242,4 +242,32 @@ describe('RefinementList', () => {
       wrapper.unmount();
     });
   });
+
+  describe('Panel compatibility', () => {
+    it('Should notify when empty', () => {
+      const isEmpty = jest.fn();
+      const wrapper = mount(
+        <RefinementList
+          refine={() => null}
+          searchForFacetValues={() => null}
+          createURL={() => '#'}
+          items={[
+            {label: 'blue', value: ['blue'], count: 30, isRefined: false},
+          ]}
+          isFromSearch={false}
+        />,
+        {context: {
+          isEmpty,
+        }},
+      );
+
+      expect(isEmpty.mock.calls.length).toBe(1);
+      expect(isEmpty.mock.calls[0][0]).toEqual(false);
+
+      wrapper.unmount();
+
+      expect(isEmpty.mock.calls.length).toBe(2);
+      expect(isEmpty.mock.calls[1][0]).toEqual(true);
+    });
+  });
 });

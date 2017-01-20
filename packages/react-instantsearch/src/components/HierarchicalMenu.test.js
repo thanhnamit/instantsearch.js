@@ -125,4 +125,33 @@ describe('HierarchicalMenu', () => {
 
     wrapper.unmount();
   });
+
+  describe('Panel compatibility', () => {
+    it('Should notify when empty', () => {
+      const isEmpty = jest.fn();
+      const wrapper = mount(
+        <HierarchicalMenu
+        refine={() => null}
+        createURL={() => '#'}
+        items={[
+          {value: 'white', count: 10, label: 'white',
+            items: [{value: 'white1', label: 'white1', count: 3}, {value: 'white2', label: 'white2', count: 4}]},
+          {value: 'black', count: 20, label: 'black'},
+          {value: 'blue', count: 30, label: 'blue'},
+        ]}
+      />,
+        {context: {
+          isEmpty,
+        }},
+      );
+
+      expect(isEmpty.mock.calls.length).toBe(1);
+      expect(isEmpty.mock.calls[0][0]).toEqual(false);
+
+      wrapper.unmount();
+
+      expect(isEmpty.mock.calls.length).toBe(2);
+      expect(isEmpty.mock.calls[1][0]).toEqual(true);
+    });
+  });
 });

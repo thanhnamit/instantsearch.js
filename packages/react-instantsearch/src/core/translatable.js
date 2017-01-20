@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {PropTypes} from 'react';
 import {has} from 'lodash';
 
 import {getDisplayName} from './utils';
@@ -26,6 +26,11 @@ export default function translatable(defaultTranslations) {
 
     Translatable.propTypes = {
       translations: withKeysPropType(Object.keys(defaultTranslations)),
+    };
+
+    // needed for the tests to pass
+    Translatable.contextTypes = {
+      isEmpty: PropTypes.func,
     };
 
     return Translatable;
