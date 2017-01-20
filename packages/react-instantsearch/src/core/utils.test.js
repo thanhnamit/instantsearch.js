@@ -14,7 +14,7 @@ import {SearchParameters, SearchResults} from 'algoliasearch-helper';
 
 describe('utils', () => {
   describe('isSpecialClick', () => {
-    it('returns true if a modifier key is pressed', () => {
+    it.only('returns true if a modifier key is pressed', () => {
       expect(isSpecialClick({altKey: true})).toBe(true);
       expect(isSpecialClick({ctrlKey: true})).toBe(true);
       expect(isSpecialClick({metaKey: true})).toBe(true);
@@ -109,4 +109,3 @@ describe('utils', () => {
     });
   });
 });
-
